@@ -21,6 +21,10 @@
       "label": "簇样板"
     },
     {
+      "name": "status",
+      "label": "合用状态"
+    },
+    {
       "name": "distance",
       "label": "DTW 距离"
     },
@@ -36,6 +40,25 @@
   "layout": "split",
   "view": "grid",
   "actions": [
+    {
+      "name": "disable_track",
+      "label": "停用见证素材",
+      "buttonLabel": "停用",
+      "path": "/cue_clusters/disable-track",
+      "fields": [
+        {
+          "name": "track",
+          "label": "见证素材编号",
+          "kind": "text",
+          "initial": "CUE-03"
+        }
+      ],
+      "help": "新比较排除该素材；以它为样板的待签结果不予签认，已签簇停止合用，并撤销未开播回单。",
+      "roles": [
+        "reviewer"
+      ],
+      "success": "已停用，关联未开播回单已撤销"
+    },
     {
       "name": "compare_cues",
       "label": "计算可迁移节奏簇",

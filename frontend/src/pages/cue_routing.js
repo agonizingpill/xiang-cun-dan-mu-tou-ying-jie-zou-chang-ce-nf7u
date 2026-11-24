@@ -27,11 +27,39 @@
     {
       "name": "status",
       "label": "交场状态"
+    },
+    {
+      "name": "air_status",
+      "label": "开播状态"
+    },
+    {
+      "name": "line_status",
+      "label": "分路占线"
     }
   ],
   "layout": "flip",
   "view": "stack",
   "actions": [
+    {
+      "name": "confirm_on_air",
+      "label": "交场确认开播",
+      "buttonLabel": "确认开播",
+      "path": "/cue_routing/confirm-on-air",
+      "fields": [
+        {
+          "name": "code",
+          "label": "交场回单编号",
+          "kind": "text",
+          "initial": "ROUTE-0"
+        }
+      ],
+      "help": "值守在交场确认开播。已开播回单会保留并继续占线；与停用同时提交时，先落定者生效。",
+      "roles": [
+        "operator",
+        "reviewer"
+      ],
+      "success": "已确认开播"
+    },
     {
       "name": "share_cue",
       "label": "签回跨场合用",

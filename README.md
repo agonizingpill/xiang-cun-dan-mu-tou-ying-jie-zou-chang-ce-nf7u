@@ -17,6 +17,8 @@
 
 已确认的试投片段进入 DTW 比较，联动岗领取合用回单或独立分路提示。
 
+领班可在对场页停用带偏的见证素材：新比较将其排除，样板为该素材的待签结果不能签认，已签节奏簇停止合用。停用会撤销未开播回单并释放分路；已由值守在交场页确认开播的回单保留并继续占线。停用与开播确认并发时，以先提交落定的数据库事务为准；停用接口按素材状态幂等，重试不会撤掉之后新占线的回单。
+
 ### 一天的业务操作
 
 1. 16:20 对 HALL-A 输入六个实测拍点。
@@ -52,8 +54,8 @@ Compose 运行 Nginx、Python FastAPI、独立 Redis 消费进程、SQL 数据�
 |---|---|---|
 | 场地配电和投影线 | `/venues` /venues/sign-venue | `frontend/src/pages/venues.js` |
 | 试投节奏轨迹 | `/cue_tracks` /cue_tracks/record-track，/cue_tracks/lock-track | `frontend/src/pages/cue_tracks.js` |
-| 对场节奏簇 | `/cue_clusters` /cue_clusters/compare-cues，/cue_clusters/save-cluster | `frontend/src/pages/cue_clusters.js` |
-| 交场分路回单 | `/cue_routing` /cue_routing/share-cue，/cue_routing/record-separate | `frontend/src/pages/cue_routing.js` |
+| 对场节奏簇 | `/cue_clusters` /cue_clusters/compare-cues，/cue_clusters/save-cluster，/cue_clusters/disable-track | `frontend/src/pages/cue_clusters.js` |
+| 交场分路回单 | `/cue_routing` /cue_routing/share-cue，/cue_routing/record-separate，/cue_routing/confirm-on-air | `frontend/src/pages/cue_routing.js` |
 
 SQL 实体与约束在 `backend/domain` 下维护。前端使用原生 ES modules。核心算子为 DTW + 凝聚层次聚类。以绝对时间差为局部代价，DTW 归一化后作为层次聚类的距离矩阵，簇内总距离最短的轨迹为代表。
 

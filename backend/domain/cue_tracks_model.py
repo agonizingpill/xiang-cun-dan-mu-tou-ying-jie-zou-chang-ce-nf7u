@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, CheckConstraint, Column, Float, ForeignKey, Integer, JSON, String, Table
+from sqlalchemy import Boolean, Column, Float, ForeignKey, JSON, String, Table, false
 
 from core.db import metadata
 
@@ -9,4 +9,5 @@ cue_tracks = Table('cue_tracks', metadata,
     Column('timings', JSON, nullable=False),
     Column('shift', Float, nullable=False),
     Column('locked', Boolean, nullable=False),
+    Column('disabled', Boolean, nullable=False, server_default=false()),
 )

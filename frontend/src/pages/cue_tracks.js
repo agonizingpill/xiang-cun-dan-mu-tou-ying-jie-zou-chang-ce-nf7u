@@ -27,6 +27,10 @@
     {
       "name": "locked",
       "label": "模板已见证"
+    },
+    {
+      "name": "disabled",
+      "label": "已停用"
     }
   ],
   "layout": "stack",

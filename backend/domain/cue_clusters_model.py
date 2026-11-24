@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, CheckConstraint, Column, Float, ForeignKey, Integer, JSON, String, Table
+from sqlalchemy import Boolean, Column, Float, ForeignKey, JSON, String, Table, false
 
 from core.db import metadata
 
@@ -10,4 +10,6 @@ cue_clusters = Table('cue_clusters', metadata,
     Column('distance', Float, nullable=False),
     Column('members', JSON, nullable=False),
     Column('token', String(64), nullable=False, unique=True),
+    Column('stopped', Boolean, nullable=False, server_default=false()),
+    Column('status', String(32), nullable=False, server_default='合用中'),
 )

@@ -5,7 +5,7 @@ from fastapi import Depends, FastAPI
 from sqlalchemy import text
 
 from core import auth
-from core.db import metadata, transaction
+from core.db import ensure_schema, transaction
 from core.config import SEED_DEMO
 from core.middleware import install
 from core.queueing import broker, view
@@ -14,8 +14,7 @@ from scripts.seed_demo import seed
 
 @asynccontextmanager
 async def lifespan(app):
-    from core.db import engine
-    metadata.create_all(engine)
+    ensure_schema()
     if SEED_DEMO:
         try:
             seed()

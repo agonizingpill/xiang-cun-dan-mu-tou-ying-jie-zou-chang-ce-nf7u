@@ -24,7 +24,7 @@ function parse(form, fields) {
 }
 export function actionForm(action, refresh) {
   const notice = status('');
-  const button = el('button', {type:'submit'}, action.label);
+  const button = el('button', {type:'submit'}, action.buttonLabel || action.label);
   const form = el('form', {class:'action', id:action.name},
     el('h3',{},action.label), el('p',{},action.help),
     el('div',{class:'fields'},action.fields.map(field => el('label',{},
